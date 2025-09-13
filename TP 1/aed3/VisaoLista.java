@@ -40,10 +40,10 @@ public class VisaoLista {
     public void mostraLista(Lista lista) {
         if (lista != null) {
             System.out.println("\n=== DADOS DA LISTA ===");
-            System.out.println("CÓDIGO: " + lista.getCodigoCompartilhavel());
+            System.out.println("CODIGO: " + lista.getCodigoCompartilhavel());
             System.out.println("NOME: " + lista.getNome());
-            System.out.println("DESCRIÇÃO: " + lista.getDescricao());
-            System.out.println("DATA DE CRIAÇÃO: " + lista.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            System.out.println("DESCRICAO: " + lista.getDescricao());
+            System.out.println("DATA DE CRIACAO: " + lista.getDataCriacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             if (lista.getDataLimite() != null) {
                 System.out.println("DATA LIMITE: " + lista.getDataLimite().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             } else {

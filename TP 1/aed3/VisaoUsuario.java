@@ -63,7 +63,7 @@ public class VisaoUsuario {
             System.out.println("E-mail: " + usuario.getEmail());
             System.out.println("Pergunta secreta: " + usuario.getPerguntaSecreta());
         } else {
-            System.out.println("Usuário nao encontrado!");
+            System.out.println("Usuario nao encontrado!");
         }
     }
 

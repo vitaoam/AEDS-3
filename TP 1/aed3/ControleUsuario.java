@@ -65,7 +65,7 @@ public class ControleUsuario {
         if (usuarioAntigo != null && !usuarioAntigo.getEmail().equals(usuario.getEmail())) {
             // Verifica se ja existe outro usuario com o novo email
             if (buscarUsuarioPorEmail(usuario.getEmail()) != null) {
-                throw new Exception("Já existe um usuario cadastrado com este email!");
+                throw new Exception("Ja existe um usuario cadastrado com este email!");
             }
             
             // Remove o índice antigo e cria o novo

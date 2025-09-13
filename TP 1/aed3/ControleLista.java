@@ -24,7 +24,7 @@ public class ControleLista {
         );
         
         Constructor<ParUsuarioLista> construtorParUsuarioLista = ParUsuarioLista.class.getConstructor();
-        this.arvoreUsuarioLista = new ArvoreBMais<>(
+        this.arvoreUsuarioLista = new ArvoreBMais<ParUsuarioLista>(
             construtorParUsuarioLista,
             4,
             ".\\dados\\listas\\arvore_usuario_lista.db"
@@ -34,17 +34,35 @@ public class ControleLista {
     }
 
     public int criarLista(Lista lista) throws Exception {
+        // Verifica se o codigo compartilhavel ja existe
+        String codigo = lista.getCodigoCompartilhavel();
+        while (buscarListaPorCodigo(codigo) != null) {
+            // Gera um novo codigo se ja existir
+            lista.setCodigoCompartilhavel(gerarNovoCodigo());
+            codigo = lista.getCodigoCompartilhavel();
+        }
+        
         // Cria a lista
         int id = arquivoLista.create(lista);
         
-        // Atualiza o índice de codigo compartilhável
+        // Atualiza o indice de codigo compartilhavel
         indiceCodigo.create(new ParCodigoID(lista.getCodigoCompartilhavel(), id));
         
-        // Atualiza a árvore B+ para o relacionamento 1:N
+        // Atualiza a arvore B+ para o relacionamento 1:N
         arvoreUsuarioLista.create(new ParUsuarioLista(lista.getIdUsuario(), id));
         
         visao.mostraMensagem("Lista criada com sucesso! ID: " + id);
         return id;
+    }
+    
+    private String gerarNovoCodigo() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            int index = (int) (Math.random() * caracteres.length());
+            codigo.append(caracteres.charAt(index));
+        }
+        return codigo.toString();
     }
 
     public Lista buscarListaPorId(int id) throws Exception {
@@ -52,31 +70,56 @@ public class ControleLista {
     }
 
     public Lista buscarListaPorCodigo(String codigo) throws Exception {
-        ParCodigoID parCodigoID = indiceCodigo.read(codigo.hashCode());
-        if (parCodigoID != null) {
-            return arquivoLista.read(parCodigoID.getId());
+        try {
+            ParCodigoID parCodigoID = indiceCodigo.read(codigo.hashCode());
+            if (parCodigoID != null) {
+                return arquivoLista.read(parCodigoID.getId());
+            }
+        } catch (Exception e) {
+            // Se houver erro na busca, retorna null
         }
         return null;
     }
 
     public ArrayList<Lista> buscarListasPorUsuario(int idUsuario) throws Exception {
-        ArrayList<ParUsuarioLista> pares = arvoreUsuarioLista.read(new ParUsuarioLista(idUsuario, -1));
         ArrayList<Lista> listas = new ArrayList<>();
         
-        for (ParUsuarioLista par : pares) {
-            Lista lista = arquivoLista.read(par.getIdLista());
-            if (lista != null) {
-                listas.add(lista);
+        try {
+            // Busca por range usando diferentes estratégias
+            ArrayList<ParUsuarioLista> pares = new ArrayList<>();
+            
+            // Tenta buscar com diferentes valores de idLista
+            for (int i = 0; i < 100; i++) { // Busca até ID 100
+                try {
+                    ArrayList<ParUsuarioLista> resultado = arvoreUsuarioLista.read(new ParUsuarioLista(idUsuario, i));
+                    for (ParUsuarioLista par : resultado) {
+                        if (par.getIdUsuario() == idUsuario && !pares.contains(par)) {
+                            pares.add(par);
+                        }
+                    }
+                } catch (Exception e) {
+                    // Ignora erros de busca individual
+                }
             }
+            
+            for (ParUsuarioLista par : pares) {
+                Lista lista = arquivoLista.read(par.getIdLista());
+                if (lista != null) {
+                    listas.add(lista);
+                }
+            }
+            
+            // Ordena as listas por nome
+            Collections.sort(listas, new Comparator<Lista>() {
+                @Override
+                public int compare(Lista l1, Lista l2) {
+                    return l1.getNome().compareToIgnoreCase(l2.getNome());
+                }
+            });
+            
+        } catch (Exception e) {
+            // Se houver erro na busca, retorna lista vazia
         }
-        
-        // Ordena as listas por nome
-        Collections.sort(listas, new Comparator<Lista>() {
-            @Override
-            public int compare(Lista l1, Lista l2) {
-                return l1.getNome().compareToIgnoreCase(l2.getNome());
-            }
-        });
         
         return listas;
     }
