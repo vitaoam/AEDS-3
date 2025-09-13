@@ -1,5 +1,7 @@
 # PresenteFácil 1.0 - Sistema de Gestão de Listas de Presentes
 
+# Relatório em pdf na página inicial
+
 ## Participantes do Trabalho Prático
 - [Vitor Alexandre Moreira Amaral]
 - [Pedro Henrique Bellone]
