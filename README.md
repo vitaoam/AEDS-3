@@ -63,53 +63,6 @@ O PresenteFácil é um sistema para gestão de listas de sugestões de presentes
 
 ### Interface do Usuário
 
-O sistema apresenta uma interface textual intuitiva com:
-
-1. **Menu Principal**: Login, cadastro e saída
-2. **Menu do Usuário Logado**: Acesso a dados pessoais, listas e busca
-3. **Menu de Listas**: Visualização, criação e gerenciamento de listas
-4. **Menu de Detalhes da Lista**: Edição, exclusão e visualização de códigos
-
-### Operações Especiais Implementadas
-
-1. **Geração de Código Compartilhável**: Algoritmo que gera códigos únicos de 10 caracteres
-2. **Validação de Integridade**: Verificação de relacionamentos antes de exclusões
-3. **Ordenação de Listas**: Listas são apresentadas em ordem alfabética
-4. **Breadcrumb**: Navegação contextual mostrando localização no sistema
-5. **Validação de Datas**: Formato brasileiro (dd/mm/aaaa) com tratamento de erros
-
-## Checklist de Requisitos
-
-### ✅ Há um CRUD de usuários (que estende a classe ArquivoIndexado, acrescentando Tabelas Hash Extensíveis e Árvores B+ como índices diretos e indiretos conforme necessidade) que funciona corretamente?
-**SIM** - Implementado na classe `ControleUsuario` com:
-- Arquivo indexado para armazenamento
-- Hash Extensível para busca por email
-- Operações CRUD completas
-
-### ✅ Há um CRUD de listas (que estende a classe ArquivoIndexado, acrescentando Tabelas Hash Extensíveis e Árvores B+ como índices diretos e indiretos conforme necessidade) que funciona corretamente?
-**SIM** - Implementado na classe `ControleLista` com:
-- Arquivo indexado para armazenamento
-- Hash Extensível para busca por código compartilhável
-- Operações CRUD completas
-
-### ✅ As listas de presentes estão vinculadas aos usuários usando o idUsuario como chave estrangeira?
-**SIM** - Cada lista possui o campo `idUsuario` que referencia o usuário proprietário
-
-### ✅ Há uma árvore B+ que registre o relacionamento 1:N entre usuários e listas?
-**SIM** - Implementada usando a classe `ParUsuarioLista` que armazena pares (idUsuario, idLista)
-
-### ✅ Há uma visualização das listas de outras pessoas por meio de um código NanoID?
-**SIM** - Implementada busca por código compartilhável de 10 caracteres alfanuméricos
-
-### ✅ O trabalho compila corretamente?
-**SIM** - Todas as classes compilam sem erros
-
-### ✅ O trabalho está completo e funcionando sem erros de execução?
-**SIM** - Sistema funcional com todas as operações implementadas
-
-### ✅ O trabalho é original e não a cópia de um trabalho de outro grupo?
-**SIM** - Implementação original baseada nos requisitos fornecidos
-
 ## Estrutura de Arquivos
 
 ```
@@ -151,10 +104,7 @@ NOSSO TRABALHO/
    - Criar um novo usuário
    - Fazer login
    - Gerenciar listas de presentes
-
-## Observações
-
-- O sistema está preparado para o TP2, onde será implementada a gestão de produtos
 - Todas as estruturas de dados solicitadas foram implementadas
 - O padrão MVC foi seguido rigorosamente
 - O sistema é robusto com tratamento de erros e validações
+
