@@ -104,7 +104,5 @@ NOSSO TRABALHO/
    - Criar um novo usuário
    - Fazer login
    - Gerenciar listas de presentes
-- Todas as estruturas de dados solicitadas foram implementadas
-- O padrão MVC foi seguido rigorosamente
-- O sistema é robusto com tratamento de erros e validações
+
 
