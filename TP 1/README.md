@@ -1,5 +1,7 @@
 # Relatório está anexado em pdf na página inicial na formatação SBC
 
+# Link do video publicado no youtube https://youtu.be/Ui4mf6UsoNs
+
 # PresenteFácil 1.0 - Sistema de Gestão de Listas de Presentes
 
 ## Participantes do Trabalho Prático
