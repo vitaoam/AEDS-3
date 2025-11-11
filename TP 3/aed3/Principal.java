@@ -90,7 +90,7 @@ public class Principal {
 
     private static void menuPrincipal() throws Exception {
         do {
-            System.out.println("\nPresenteFacil 2.0");
+            System.out.println("\nPresenteFacil 3.0");
             System.out.println("-----------------");
             System.out.println("> Inicio");
             System.out.println();
@@ -164,7 +164,7 @@ public class Principal {
 
     private static void menuUsuarioLogado() throws Exception {
         do {
-            System.out.println("\nPresenteFacil 2.0");
+            System.out.println("\nPresenteFacil 3.0");
             System.out.println("-----------------");
             System.out.println("> Inicio");
             System.out.println();
@@ -201,7 +201,7 @@ public class Principal {
 
     private static void menuMinhasListas() throws Exception {
         do {
-            System.out.println("\nPresenteFacil 2.0");
+            System.out.println("\nPresenteFacil 3.0");
             System.out.println("-----------------");
             System.out.println("> Inicio > Minhas listas");
             System.out.println();
@@ -288,7 +288,7 @@ public class Principal {
 
     private static void menuDetalhesLista(Lista lista) throws Exception {
         do {
-            System.out.println("\nPresenteFacil 2.0");
+            System.out.println("\nPresenteFacil 3.0");
             System.out.println("-----------------");
             System.out.println("> Inicio > Minhas listas > " + lista.getNome());
             System.out.println();
@@ -479,7 +479,7 @@ public class Principal {
 
     private static void menuProdutos() throws Exception {
         do {
-            System.out.println("\nPresenteFacil 2.0");
+            System.out.println("\nPresenteFacil 3.0");
             System.out.println("-----------------");
             System.out.println("> Inicio > Produtos");
             System.out.println();

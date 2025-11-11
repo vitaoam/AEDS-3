@@ -179,7 +179,7 @@ public class VisaoLista {
     }
 
     public void mostraBreadcrumb(String breadcrumb) {
-        System.out.println("\nPresenteFacil 1.0");
+        System.out.println("\nPresenteFacil 3.0");
         System.out.println("-----------------");
         System.out.println("> " + breadcrumb);
     }

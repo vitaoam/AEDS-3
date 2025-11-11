@@ -206,7 +206,7 @@ public class Arquivo<T extends Registro> {
                     arquivo.seek(endereco+3);
                     arquivo.writeLong(enderecoEspaco);
                     arquivo.seek(enderecoEspaco+3);
-                    arquivo.writeLong(+1);
+                    arquivo.writeLong(-1);
                     break;
                 }
                 anterior = endereco;
@@ -223,7 +223,14 @@ public class Arquivo<T extends Registro> {
         long endereco = arquivo.readLong(); // endereço do elemento que será testado
         long proximo = -1; // endereço do elemento seguinte da lista
         int tamanho;
+        long tamanhoArquivo = arquivo.length();
         while(endereco != -1) {
+            // Guarda de seguranca: se o endereco estiver invalido, limpa a lista e aborta reuso
+            if (endereco < TAM_CABECALHO || endereco >= tamanhoArquivo) {
+                arquivo.seek(4);
+                arquivo.writeLong(-1); // reseta a lista de excluidos corrompida
+                return -1;
+            }
             arquivo.seek(endereco+1);
             tamanho = arquivo.readShort();
             proximo = arquivo.readLong();
