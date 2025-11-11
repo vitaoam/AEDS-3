@@ -1,4 +1,4 @@
-# Link do video publicado no youtube: [insira o link aqui]
+# Link do video publicado no youtube: https://youtu.be/A0SaOqF-jxY
 
 # PresenteFácil 3.0 - Sistema de Gestão de Listas de Presentes (busca por palavras)
 
