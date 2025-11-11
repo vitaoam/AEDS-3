@@ -1,5 +1,3 @@
-# Relatório está anexado em pdf na página inicial na formatação SBC
-
 # Link do video publicado no youtube: [insira o link aqui]
 
 # PresenteFácil 3.0 - Sistema de Gestão de Listas de Presentes (busca por palavras)
