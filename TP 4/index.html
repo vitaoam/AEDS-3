@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PresenteFácil 4.0 - CRUD de Produtos (LocalStorage)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <h1>PresenteFácil 4.0</h1>
+      <p>Visualização interativa de CRUD de Produtos (LocalStorage)</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left-column">
+      <section class="card" id="form-section">
+        <h2 id="form-title">Cadastrar Produto</h2>
+        <form id="product-form" autocomplete="off">
+          <input type="hidden" id="produto-id" />
+          <div class="form-row">
+            <label for="gtin13">GTIN-13</label>
+            <input type="text" id="gtin13" maxlength="13" placeholder="Ex.: 7891234567890" required />
+          </div>
+          <div class="form-row">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Nome do produto" required />
+          </div>
+          <div class="form-row">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" rows="3" placeholder="Descrição do produto"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="btn-salvar">Salvar</button>
+            <button type="button" class="btn ghost" id="btn-cancelar" hidden>Cancelar</button>
+          </div>
+          <p class="hint">Validações: GTIN-13 com 13 dígitos e único; Nome obrigatório.</p>
+          <div class="message" id="form-message" role="status"></div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Produtos</h2>
+        <div class="toolbar">
+          <input type="text" id="busca" placeholder="Buscar por GTIN ou nome" />
+          <button class="btn" id="btn-buscar">Buscar</button>
+          <button class="btn ghost" id="btn-limpar">Limpar</button>
+        </div>
+        <div class="table-wrapper">
+          <table class="table" id="produtos-tabela" aria-describedby="legend-aviso-id">
+            <thead>
+              <tr>
+                <th>GTIN-13</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th style="width: 140px;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="produtos-tbody">
+            </tbody>
+          </table>
+        </div>
+        <p id="legend-aviso-id" class="hint">Observação: IDs internos não são exibidos ao usuário.</p>
+      </section>
+    </section>
+
+    <section class="right-column">
+      <section class="card">
+        <div class="card-title-row">
+          <h2>Visualização do Arquivo (simulado)</h2>
+          <label class="toggle">
+            <input type="checkbox" id="toggle-excluidos" />
+            <span>Mostrar excluídos</span>
+          </label>
+        </div>
+        <div class="table-wrapper">
+          <table class="table compact" id="arquivo-tabela">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Lápide</th>
+                <th>Tamanho (bytes)</th>
+                <th>ID</th>
+                <th>GTIN-13</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody id="arquivo-tbody">
+            </tbody>
+          </table>
+        </div>
+        <div class="hint">
+          Esta tabela representa um “Arquivo Indexado” simulado:
+          registros com lápide (excluídos) permanecem no “arquivo”,
+          mantendo o tamanho original. Os dados são persistidos no LocalStorage do navegador.
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Trabalho Prático 4 - AEDs III • HTML/CSS/JS • LocalStorage</small>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Inicialização
+    window.addEventListener('DOMContentLoaded', () => {
+      window.PF4.init();
+    });
+  </script>
+</body>
+</html>
+
+
